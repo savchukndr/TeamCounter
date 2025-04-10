@@ -1,0 +1,21 @@
+{
+  "version": 2,
+  "dgSpecHash": "GmHEXJJx0Fo=",
+  "success": true,
+  "projectFilePath": "/Users/andriisavchuk/Documents/Common/Studing/Efficy/TeamCounter/src/TeamCounter.Service/TeamCounter.Service.csproj",
+  "expectedPackageFiles": [
+    "/Users/andriisavchuk/.nuget/packages/fluentvalidation/11.11.0/fluentvalidation.11.11.0.nupkg.sha512",
+    "/Users/andriisavchuk/.nuget/packages/fluentvalidation.aspnetcore/11.3.0/fluentvalidation.aspnetcore.11.3.0.nupkg.sha512",
+    "/Users/andriisavchuk/.nuget/packages/fluentvalidation.dependencyinjectionextensions/11.11.0/fluentvalidation.dependencyinjectionextensions.11.11.0.nupkg.sha512",
+    "/Users/andriisavchuk/.nuget/packages/mediatr/12.5.0/mediatr.12.5.0.nupkg.sha512",
+    "/Users/andriisavchuk/.nuget/packages/mediatr.contracts/2.0.1/mediatr.contracts.2.0.1.nupkg.sha512",
+    "/Users/andriisavchuk/.nuget/packages/microsoft.extensions.apidescription.server/6.0.5/microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
+    "/Users/andriisavchuk/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/8.0.0/microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512",
+    "/Users/andriisavchuk/.nuget/packages/microsoft.openapi/1.6.22/microsoft.openapi.1.6.22.nupkg.sha512",
+    "/Users/andriisavchuk/.nuget/packages/swashbuckle.aspnetcore/7.3.2/swashbuckle.aspnetcore.7.3.2.nupkg.sha512",
+    "/Users/andriisavchuk/.nuget/packages/swashbuckle.aspnetcore.swagger/7.3.2/swashbuckle.aspnetcore.swagger.7.3.2.nupkg.sha512",
+    "/Users/andriisavchuk/.nuget/packages/swashbuckle.aspnetcore.swaggergen/7.3.2/swashbuckle.aspnetcore.swaggergen.7.3.2.nupkg.sha512",
+    "/Users/andriisavchuk/.nuget/packages/swashbuckle.aspnetcore.swaggerui/7.3.2/swashbuckle.aspnetcore.swaggerui.7.3.2.nupkg.sha512"
+  ],
+  "logs": []
+}
