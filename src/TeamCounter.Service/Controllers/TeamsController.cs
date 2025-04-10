@@ -13,6 +13,8 @@ using TeamCounter.Application.Handlers.StepIncrement;
 
 namespace TeamCounter.Service.Controllers;
 
+// MediatR is used to decouple controller's logic
+
 [ApiController]
 [Route("api/[controller]")]
 public class TeamsController(IMediator mediator) : ControllerBase

@@ -7,6 +7,8 @@ namespace TeamCounter.Application.Services;
 public class TeamService : ITeamService
 {
     private readonly ConcurrentDictionary<Guid, Team> _teams = new();
+
+    // synchronization object to protect shared resources in lock statements
     private readonly object _lockObject = new();
 
     public Guid CreateTeam(string name)
@@ -21,6 +23,7 @@ public class TeamService : ITeamService
             Id = Guid.NewGuid(),
             Name = name
         };
+
         _teams[team.Id] = team;
         
         return team.Id;

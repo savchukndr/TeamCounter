@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="../build/TeamCounter.Service.props" />
-</Project>

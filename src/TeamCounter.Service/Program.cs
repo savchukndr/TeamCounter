@@ -9,7 +9,10 @@ using TeamCounter.Application.Validators;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
+
+// register fluent validators
 builder.Services.AddFluentValidationAutoValidation();
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
