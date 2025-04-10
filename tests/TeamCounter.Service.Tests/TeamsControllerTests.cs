@@ -35,9 +35,7 @@ public class TeamsControllerTests
         // Arrange
         var teamCreateDto = _fixture.Create<TeamCreateDto>();
         var expectedTeamId = _fixture.Create<Guid>();
-        _mediatorMock.Setup(m => m.Send(
-                It.IsAny<CreateTeamCommand>(), It.IsAny<CancellationToken>()))
-                     .ReturnsAsync(expectedTeamId);
+        Arrange_CreateTeamHandler(expectedTeamId);
 
         // Act
         var result = await _controller.CreateTeam(teamCreateDto);
@@ -61,9 +59,7 @@ public class TeamsControllerTests
     {
         // Arrange
         var expectedTeams = _fixture.Create<List<Team>>();
-        _mediatorMock.Setup(m => m.Send(
-                It.IsAny<GetTeamsCommand>(), It.IsAny<CancellationToken>()))
-                     .ReturnsAsync(expectedTeams);
+        Arrange_GetTeamsHandler(expectedTeams);
     
         // Act
         var result = await _controller.GetTeams();
@@ -87,9 +83,7 @@ public class TeamsControllerTests
         var teamId = _fixture.Create<Guid>();
         var counterCreateDto = _fixture.Create<CounterCreateDto>();
         var expectedCounterId = _fixture.Create<Guid>();
-        _mediatorMock.Setup(m => m.Send(
-                It.IsAny<CreateCounterCommand>(), It.IsAny<CancellationToken>()))
-            .ReturnsAsync(expectedCounterId);
+        Arrange_CreateCounterHandler(expectedCounterId);
 
         // Act
         var result = await _controller.AddCounter(teamId, counterCreateDto);
@@ -104,9 +98,7 @@ public class TeamsControllerTests
         // Arrange
         var teamId = _fixture.Create<Guid>();
         var counterCreateDto = _fixture.Create<CounterCreateDto>();
-        _mediatorMock.Setup(m => m.Send(
-                It.IsAny<CreateCounterCommand>(), It.IsAny<CancellationToken>()))
-            .ThrowsAsync(new KeyNotFoundException($"Team {teamId} does not exist"));
+        Arrange_CreateCounterHandlerWithException(teamId);
 
         // Act
         var result = await _controller.AddCounter(teamId, counterCreateDto);
@@ -127,9 +119,7 @@ public class TeamsControllerTests
         // Arrange
         var teamId = _fixture.Create<Guid>();
         var expectedTotal = _fixture.Create<int>();
-        _mediatorMock.Setup(m => m.Send(
-                It.IsAny<GetTeamTotalCommand>(), It.IsAny<CancellationToken>()))
-            .ReturnsAsync(expectedTotal);
+        Arrange_GetTeamTotalHandler(expectedTotal);
 
         // Act
         var result = await _controller.GetTeamTotal(teamId);
@@ -143,8 +133,7 @@ public class TeamsControllerTests
     {
         // Arrange
         var teamId = _fixture.Create<Guid>();
-        _mediatorMock.Setup(m => m.Send(
-                It.IsAny<DeleteTeamCommand>(), It.IsAny<CancellationToken>())).Verifiable();
+        Arrange_DeleteTeamHandler();
     
         // Act
         var result = await _controller.DeleteTeam(teamId);
@@ -159,13 +148,59 @@ public class TeamsControllerTests
         // Arrange
         var teamId = _fixture.Create<Guid>();
         var counterId = _fixture.Create<Guid>();
-        _mediatorMock.Setup(m => m.Send(
-                It.IsAny<DeleteCounterCommand>(), It.IsAny<CancellationToken>())).Verifiable();
+        Arrange_DeleteCounterHandler();
     
         // Act
         var result = await _controller.DeleteCounter(teamId, counterId);
     
         // Assert
         result.Should().BeOfType<NoContentResult>();
+    }
+
+    private void Arrange_CreateTeamHandler(Guid expectedTeamId)
+    {
+        _mediatorMock.Setup(m => m.Send(
+                It.IsAny<CreateTeamCommand>(), It.IsAny<CancellationToken>()))
+                     .ReturnsAsync(expectedTeamId);
+    }
+
+    private void Arrange_GetTeamsHandler(IEnumerable<Team> expectedTeams)
+    {
+        _mediatorMock.Setup(m => m.Send(
+                It.IsAny<GetTeamsCommand>(), It.IsAny<CancellationToken>()))
+                     .ReturnsAsync(expectedTeams);
+    }
+
+    private void Arrange_CreateCounterHandler(Guid expectedCounterId)
+    {
+        _mediatorMock.Setup(m => m.Send(
+                It.IsAny<CreateCounterCommand>(), It.IsAny<CancellationToken>()))
+            .ReturnsAsync(expectedCounterId);
+    }
+
+    private void Arrange_CreateCounterHandlerWithException(Guid teamId)
+    {
+        _mediatorMock.Setup(m => m.Send(
+                It.IsAny<CreateCounterCommand>(), It.IsAny<CancellationToken>()))
+            .ThrowsAsync(new KeyNotFoundException($"Team {teamId} does not exist"));
+    }
+
+    private void Arrange_GetTeamTotalHandler(int expectedTotal)
+    {
+        _mediatorMock.Setup(m => m.Send(
+                It.IsAny<GetTeamTotalCommand>(), It.IsAny<CancellationToken>()))
+            .ReturnsAsync(expectedTotal);
+    }
+
+    private void Arrange_DeleteTeamHandler()
+    {
+        _mediatorMock.Setup(m => m.Send(
+                It.IsAny<DeleteTeamCommand>(), It.IsAny<CancellationToken>())).Verifiable();
+    }
+
+    private void Arrange_DeleteCounterHandler()
+    {
+        _mediatorMock.Setup(m => m.Send(
+                It.IsAny<DeleteCounterCommand>(), It.IsAny<CancellationToken>())).Verifiable();
     }
 }
